@@ -13,6 +13,7 @@ documentation.workspace = true
 
 [dependencies]
 gluesql-core.workspace = true
+phext-storage.workspace = true
 memory-storage.workspace = true
 
 async-trait = "0.1"

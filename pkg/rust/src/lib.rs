@@ -9,6 +9,9 @@ pub mod core {
     pub use gluesql_core::*;
 }
 
+#[cfg(feature = "phext-storage")]
+pub use phext_storage;
+
 #[cfg(feature = "memory-storage")]
 pub use memory_storage;
 
@@ -35,6 +38,9 @@ pub use test_suite;
 
 pub mod prelude {
     pub use gluesql_core::prelude::*;
+
+    #[cfg(feature = "phext-storage")]
+    pub use phext_storage::PhextStorage;
 
     #[cfg(feature = "memory-storage")]
     pub use memory_storage::MemoryStorage;

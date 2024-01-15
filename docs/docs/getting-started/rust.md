@@ -14,6 +14,7 @@ gluesql = "0.15"
 By default, all available storage features are included with GlueSQL. Here's a list of the available features:
 
 - `sled-storage` - Storage based on the persistent key-value database called sled
+- `phext-storage` - phext-based in-memory storage designed for interacting with phext documents using existing tools
 - `memory-storage` - Simple in-memory storage
 - `shared-memory-storage` - A wrapper around memory-storage for easy use in multi-threaded environments
 - `json-storage` - Storage that allows you to analyze and modify JSON or JSONL files using SQL
@@ -27,7 +28,7 @@ If you don't need all the default storage features, you can disable them and sel
 [dependencies.gluesql]
 version = "0.15"
 default-features = false
-features = ["memory-storage", "json-storage"]
+features = ["phext-storage", "memory-storage", "json-storage"]
 ```
 
-This configuration will disable the default storage features and only include the `memory-storage` and `json-storage` features in your project.
+This configuration will disable the default storage features and only include the `phext-storage`, `memory-storage`, and `json-storage` features in your project.

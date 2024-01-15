@@ -19,7 +19,8 @@ nodejs = ["console_error_panic_hook"]
 
 [dependencies]
 gluesql-core.workspace = true
-memory-storage .workspace = true
+phext-storage.workspace = true
+memory-storage.workspace = true
 web-storage.workspace = true
 idb-storage.workspace = true
 composite-storage.workspace = true

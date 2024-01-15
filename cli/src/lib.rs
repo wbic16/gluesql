@@ -68,6 +68,11 @@ pub fn run() -> Result<()> {
 
             run(MemoryStorage::default(), args.execute);
         }
+        (None, None, _) | (None, Some(Storage::Phext), _) => {
+            println!("[phext-storage] initialized");
+
+            run(PhextStorage::default(), args.execute);
+        }
         (Some(_), Some(Storage::Memory), _) => {
             panic!("failed to load memory-storage: it should be without path");
         }

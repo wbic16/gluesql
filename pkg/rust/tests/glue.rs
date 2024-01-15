@@ -1,4 +1,4 @@
-#![cfg(any(feature = "memory-storage", feature = "sled-storage"))]
+#![cfg(any(feature = "phext-storage", feature = "memory-storage", feature = "sled-storage"))]
 use {
     futures::executor::block_on,
     gluesql_core::{
@@ -76,6 +76,17 @@ fn memory_basic() {
     use memory_storage::MemoryStorage;
 
     let storage = MemoryStorage::default();
+    let glue = Glue::new(storage);
+
+    block_on(basic(glue));
+}
+
+#[cfg(feature = "phext-storage")]
+#[test]
+fn phext_basic() {
+    use phext_storage::PhextStorage;
+
+    let storage = PhextStorage::default();
     let glue = Glue::new(storage);
 
     block_on(basic(glue));

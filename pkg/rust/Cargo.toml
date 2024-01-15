@@ -23,6 +23,7 @@ all-features = true
 gluesql-core.workspace = true
 cli = { workspace = true, optional = true }
 test-suite = { workspace = true, optional = true }
+phext-storage = { workspace = true, optional = true }
 memory-storage = { workspace = true, optional = true }
 shared-memory-storage = { workspace = true, optional = true }
 sled-storage = { workspace = true, optional = true }
@@ -41,6 +42,7 @@ futures = "0.3"
 default = [
 	"cli",
 	"test-suite",
+	"phext-storage",
 	"memory-storage",
 	"shared-memory-storage",
 	"sled-storage",

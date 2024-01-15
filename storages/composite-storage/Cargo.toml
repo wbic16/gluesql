@@ -16,6 +16,7 @@ futures = "0.3"
 
 [dev-dependencies]
 test-suite.workspace = true
+phext-storage.workspace = true
 memory-storage.workspace = true
 sled-storage.workspace = true
 

@@ -21,6 +21,7 @@ include-python-workspace = []
 
 [dependencies]
 gluesql-core.workspace = true
+phext-storage.workspace = true
 memory-storage.workspace = true
 web-storage.workspace = true
 idb-storage.workspace = true

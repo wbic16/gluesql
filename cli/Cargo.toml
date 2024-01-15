@@ -12,6 +12,7 @@ documentation.workspace = true
 gluesql-core.workspace = true
 sled-storage.workspace = true
 memory-storage.workspace = true
+phext-storage.workspace = true
 json-storage.workspace = true
 csv-storage.workspace = true
 
