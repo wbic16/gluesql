@@ -20,6 +20,7 @@ use {
         store::{DataRow, GStore, GStoreMut, Store, Transaction},
     },
     json_storage::JsonStorage,
+    phext_storage::PhextStorage,
     memory_storage::MemoryStorage,
     sled_storage::SledStorage,
     std::{
@@ -52,6 +53,7 @@ struct Args {
 
 #[derive(clap::ValueEnum, Debug, Clone)]
 enum Storage {
+    Phext,
     Memory,
     Sled,
     Json,
@@ -63,15 +65,10 @@ pub fn run() -> Result<()> {
     let path = args.path.as_deref().and_then(Path::to_str);
 
     match (path, args.storage, args.dump) {
-        (None, None, _) | (None, Some(Storage::Memory), _) => {
+        (None, None, _) | (None, Some(Storage::Phext), _) => {
             println!("[memory-storage] initialized");
 
             run(MemoryStorage::default(), args.execute);
-        }
-        (None, None, _) | (None, Some(Storage::Phext), _) => {
-            println!("[phext-storage] initialized");
-
-            run(PhextStorage::default(), args.execute);
         }
         (Some(_), Some(Storage::Memory), _) => {
             panic!("failed to load memory-storage: it should be without path");
@@ -89,6 +86,14 @@ pub fn run() -> Result<()> {
 
             run(
                 JsonStorage::new(path).expect("failed to load json-storage"),
+                args.execute,
+            );
+        }
+        (Some(path), Some(Storage::Phext), _) => {
+            println!("[phext-storage] connected to {}", path);
+
+            run(
+                PhextStorage::new(path).expect("failed to load phext-storage"),
                 args.execute,
             );
         }

@@ -15,7 +15,13 @@ use {
         store::{CustomFunction, CustomFunctionMut, DataRow, RowIter, Store, StoreMut},
     },
     serde::{Deserialize, Serialize},
-    std::collections::{BTreeMap, HashMap},
+    std::{
+        collections::BTreeMap,
+        collections::HashMap,
+        fs::{self, File},
+        io::Read,
+        path::PathBuf,
+    },
 };
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -30,6 +36,22 @@ pub struct PhextStorage {
     pub items: HashMap<String, Item>,
     pub metadata: HashMap<String, HashMap<String, Value>>,
     pub functions: HashMap<String, StructCustomFunction>,
+    pub path: PathBuf, 
+    pub file: File,
+    pub phext: Phext,   
+}
+
+impl PhextStorage {
+    pub fn new(path: &str) -> Result<Self> {
+        fs::create_dir_all(path).map_storage_err()?;
+        let path = PathBuf::from(path);
+
+        file = File::open(&schema_path).map_storage_err()?;
+        phext = String::new();
+        file.read_to_string(&mut phext).map_storage_err()?;
+
+        Ok(Self { path })
+    }
 }
 
 #[async_trait(?Send)]
